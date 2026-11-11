@@ -129,6 +129,9 @@ h1 { margin: 0; display: flex; flex-direction: column; align-items: flex-start; 
 
 .salsa-section {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
   padding: clamp(68px, 9vw, 118px) 24px clamp(84px, 11vw, 140px);
   overflow: hidden;
   background:
@@ -136,7 +139,22 @@ h1 { margin: 0; display: flex; flex-direction: column; align-items: flex-start; 
     #fff2c7;
   border-top: 2px solid var(--ink);
 }
-.salsa-inner { width: min(100%, 1120px); margin: 0 auto; }
+.salsa-section::before,
+.salsa-section::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 12px;
+  border: 1px solid #27633a;
+  border-radius: 5px;
+  pointer-events: none;
+}
+.salsa-section::after {
+  inset: 18px;
+  border-color: #d4142738;
+  border-radius: 3px;
+}
+.salsa-inner { position: relative; z-index: 1; flex: 1 0 auto; width: min(100%, 1120px); margin: 0 auto; }
 .salsa-kicker { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .2em; }
 .salsa-kicker span { width: 22px; height: 2px; background: var(--red); transform: rotate(-12deg); }
 .salsa-heading-row { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
@@ -229,4 +247,9 @@ h1 { margin: 0; display: flex; flex-direction: column; align-items: flex-start; 
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+.salsa-footer { position: relative; z-index: 1; width: min(calc(100% - clamp(-8px, calc(10.4vw - 48px), 116px)), 1380px); margin: auto auto 0; }
+@media (max-width: 620px) {
+  .poster-footer.salsa-footer { gap: 8px; padding-right: 84px; font-size: 6px; letter-spacing: .07em; }
 }
